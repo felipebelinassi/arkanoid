@@ -3,11 +3,12 @@ import { Paddle } from '../sprites/paddle';
 import { Ball } from '../sprites/ball';
 
 export interface CanvasView {
+  canvas: HTMLCanvasElement,
   clear: () => void;
   initStartButton: (startFunction: (view: CanvasView) => void) => void;
   drawScore: (score: number) => void;
   drawInfo: (text: string) => void;
-  drawSprite: (sprite: Brick) => void;
+  drawSprite: (sprite: Brick | Paddle | Ball) => void;
   drawBricks: (bricks: Brick[]) => void;
 }
 
@@ -34,7 +35,7 @@ const canvasView = (canvasName: string): CanvasView => {
     if (info) info.innerHTML = text;
   };
 
-  const drawSprite = (sprite: Brick) => {
+  const drawSprite = (sprite: Brick | Paddle | Ball) => {
     if (!sprite) return;
 
     context?.drawImage(
@@ -51,6 +52,7 @@ const canvasView = (canvasName: string): CanvasView => {
   };
 
   return {
+    canvas,
     clear,
     initStartButton,
     drawScore,

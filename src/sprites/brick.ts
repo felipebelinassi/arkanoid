@@ -12,7 +12,7 @@ interface BrickParams extends Omit<Brick, 'image'> {
   image: string;
 }
 
-const brick = (params: BrickParams): Brick => {
+export default (params: BrickParams): Brick => {
   const brickImage = new Image();
   brickImage.src = params.image;
 
@@ -24,5 +24,3 @@ const brick = (params: BrickParams): Brick => {
     image: brickImage,
   }
 }
-
-export default brick;
